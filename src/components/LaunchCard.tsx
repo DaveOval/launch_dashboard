@@ -18,7 +18,7 @@ export const LaunchCard = ({ launch } : any) => {
                 <span className="text-sm font-semibold text-gray-700 dark:text-gray-300"> {date}</span>
             </div>
             <Link to={`/launch/${launch.id}`}>
-                <img className="rounded-t-lg" src={launch.links.patch.large} alt="" />
+                <img className="rounded-t-lg" src={launch.links.patch.large} alt={launch.name}  loading="lazy" />
             </Link>
             <div className="p-5">
                 <Link to={`/launch/${launch.id}`}>
