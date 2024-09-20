@@ -19,7 +19,7 @@ function App() {
       {isLoading ? (
         <Preload />
       ) : (
-        <div className="flex-1 bg-gray-100 p-10">
+        <div className="flex-1 bg-gray-100 ">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/launchs" element={<LaunchList />} />
