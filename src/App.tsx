@@ -1,11 +1,14 @@
+import { Routes, Route } from 'react-router-dom'
+import { Home, Error }from "./pages"
 
 
 function App() {
 
   return (
-    <>
-      <h1>Hola</h1>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="*" element={<Error />} />
+    </Routes>
   )
 }
 
