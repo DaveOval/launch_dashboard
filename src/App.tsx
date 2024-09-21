@@ -14,12 +14,12 @@ function App() {
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <SideNav />
       {isLoading ? (
         <Preload />
       ) : (
-        <div className="flex-1 bg-gray-100 ">
+        <div className="flex-1 bg-gray-100 overflow-y-scroll">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/launchs" element={<LaunchList />} />

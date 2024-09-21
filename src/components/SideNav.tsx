@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { IoHomeSharp } from "react-icons/io5";
+import { MdFavorite, MdRocketLaunch } from "react-icons/md";
 
 export const SideNav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +14,9 @@ export const SideNav = () => {
   return (
     <div className="flex h-screen">
       {/* Botón de menú para móvil */}
-      <button onClick={toggleMenu} className="p-4 text-black md:hidden">
+      <button 
+        onClick={toggleMenu} 
+        className={`p-4 text-black md:hidden absolute transition-all z-50 duration-300 ${isOpen ? "left-64" : "left-4"}`}>
         {isOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
       </button>
 
@@ -24,15 +28,27 @@ export const SideNav = () => {
           </div>
           <nav className="mt-5">
             <ul>
-              <li className="px-4 py-2 hover:bg-gray-700">
-                <Link to="/">Home</Link>
+              <li className="px-4 py-2 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-700">
+                <Link to="/" className="flex items-center gap-4 w-full h-full">
+                  <IoHomeSharp className="h-5 w-5" />
+                  <span>Home</span>
+                </Link>
               </li>
-              <li className="px-4 py-2 hover:bg-gray-700">
-                <Link to="/launchs">Launches</Link>
+
+              <li className="px-4 py-2 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-700">
+                <Link to="/launchs" className="flex items-center gap-4 w-full h-full">
+                  <MdRocketLaunch className="h-5 w-5" />
+                  <span>Launches</span>
+                </Link>
               </li>
-              <li className="px-4 py-2 hover:bg-gray-700">
-                <Link to="/favorites">Favorites</Link>
+
+              <li className="px-4 py-2 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-700">
+                <Link to="/favorites" className="flex items-center gap-4 w-full h-full">
+                  <MdFavorite className="h-5 w-5" />
+                  <span>Favorites</span>
+                </Link>
               </li>
+              
             </ul>
           </nav>
         </div>
