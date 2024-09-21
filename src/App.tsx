@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Simulando una carga
+    }, 2000); 
   }, []);
 
   return (
@@ -19,10 +19,11 @@ function App() {
       {isLoading ? (
         <Preload />
       ) : (
-        <div className="flex-1 bg-gray-100 overflow-y-scroll">
+        <div className="flex-1 bg-gray-200 overflow-y-scroll">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/launchs" element={<LaunchList />} />
+            <Route path="/launches" element={<LaunchList />} />
+            <Route path="/launches/:id" element={<LaunchList />} />
             <Route path="/launch/:id" element={<LaunchDetails />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="*" element={<Error />} />

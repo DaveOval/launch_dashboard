@@ -17,7 +17,7 @@ export const LaunchList = () => {
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Launches</h1>
 
-      <Filters />
+      <Filters setFilters={undefined} />
       
       <div className="flex flex-wrap justify-center gap-3">
         {data.map((launch: any) => (

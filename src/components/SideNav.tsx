@@ -36,7 +36,7 @@ export const SideNav = () => {
               </li>
 
               <li className="px-4 py-2 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-700">
-                <Link to="/launchs" className="flex items-center gap-4 w-full h-full">
+                <Link to="/launches" className="flex items-center gap-4 w-full h-full">
                   <MdRocketLaunch className="h-5 w-5" />
                   <span>Launches</span>
                 </Link>
