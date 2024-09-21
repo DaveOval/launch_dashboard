@@ -21,7 +21,7 @@ export const Filters = ({ setFilters } : any ) => {
     fetchRockets();
   }, []);
 
-  const handleSubmit = (e ) => {
+  const handleSubmit = ( e : any) => {
     e.preventDefault();
     setFilters({ search, year, result, rocket });
   };

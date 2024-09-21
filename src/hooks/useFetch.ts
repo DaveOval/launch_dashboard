@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 
-export const useFetch = (url : string , params: any) => {
+export const useFetch = (url : string ) => {
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ export const useFetch = (url : string , params: any) => {
             setLoading(true);
             setError(false);
             try {
-                const response = await axios.get(url, { params });
+                const response = await axios.get( url );
                 setData(response.data);
             } catch (error) {
                 setError( true );
@@ -23,7 +23,7 @@ export const useFetch = (url : string , params: any) => {
         };
 
         fecthData();
-    }, [url, JSON.stringify(params)]);
+    }, [ url ] );
 
     return { data, loading, error };
 }
