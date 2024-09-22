@@ -23,7 +23,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/launches" element={<LaunchList />} />
-            <Route path="/launches/:id" element={<LaunchList />} />
+            <Route path="/upcomming_launches" element={<LaunchList />} />
+            <Route path="/latest_launches" element={<LaunchList />} />
             <Route path="/launch/:id" element={<LaunchDetails />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="*" element={<Error />} />
