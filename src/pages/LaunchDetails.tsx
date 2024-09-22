@@ -7,6 +7,7 @@ interface Launch {
   flight_number: number;
   name: string;
   date_utc: string;
+  details: string;
   rocket: {
     rocket_name: string;
   };
@@ -17,6 +18,7 @@ interface Launch {
   links: {
     youtube_id: string;
     wikipedia: string;
+    article: string;
     patch: {
       large: string | null;
       small: string | null
@@ -41,8 +43,8 @@ export const LaunchDetails = () => {
 
   console.log({data})
 
-  const siteName = data.launch_site?.site_name || "Lugar no encontrado";
-  const mapSrc = `https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(siteName)}`;
+  /* const siteName = data.launch_site?.site_name || "Lugar no encontrado";
+  const mapSrc = `https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(siteName)}`; */
 
   return (
     <div className="p-6 md:p-8 bg-gray-100 min-h-screen flex flex-col">
@@ -63,9 +65,16 @@ export const LaunchDetails = () => {
           <p className="text-gray-700">
             <strong>Rocket:</strong> {data.rocket.rocket_name || "No rocket"}
           </p>
-          <div className="mb-4">
+          <div className="text-gray-700">
             <strong>More Info:</strong>
             <a href={data.links.wikipedia} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Read on Wikipedia</a>
+          </div>
+          <div className="mb-5">
+            <strong>SpaceX aritucle:</strong>
+            <a href={data.links.article} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Read on Wikipedia</a>
+          </div>
+          <div>
+            <p>{data.details}</p>
           </div>
         </div>
   
@@ -86,7 +95,7 @@ export const LaunchDetails = () => {
           </iframe>
         </div>
 
-        <div className="flex-1">
+        {/* <div className="flex-1">
           <iframe
             className="w-full h-64 md:h-96" 
             frameBorder="0"
@@ -94,7 +103,7 @@ export const LaunchDetails = () => {
             src={mapSrc}
             allowFullScreen>
           </iframe>
-        </div>
+        </div> */}
       </div>
 
   
