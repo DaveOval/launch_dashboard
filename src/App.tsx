@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Home, Error, LaunchDetails, LaunchList, Favorites, Map } from './pages';
 import { SideNav } from './components/SideNav';
 import { useEffect, useState } from 'react';
-import { Preload } from './components/Preload';
+import { Preload } from './components/Preload'; 
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,7 @@ function App() {
       {isLoading ? (
         <Preload />
       ) : (
-        <div className="flex-1 bg-gray-200 overflow-y-scroll mt-5">
+        <div className="flex-1 bg-gray-200 overflow-y-scroll">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/launches" element={<LaunchList />} />
