@@ -7,7 +7,6 @@ interface Launch {
   flight_number: number;
   name: string;
   date_utc: string;
-  launch_year: number | string;
   rocket: {
     rocket_name: string;
   };
@@ -16,13 +15,15 @@ interface Launch {
     site_name: string;
   };
   links: {
-    video_link: string;
+    youtube_id: string;
     wikipedia: string;
     patch: {
       large: string | null;
       small: string | null
     };
   };
+  success: boolean;
+  youtube_id: string;
 }
 
 export const LaunchDetails = () => {
@@ -48,24 +49,20 @@ export const LaunchDetails = () => {
       <div className="flex flex-col md:flex-row w-full space-y-6 md:space-y-0 md:space-x-8">
         <div className="flex-1">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl md:text-3xl font-bold">{data.name}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold">{data.name}</h1>
             <button onClick={toggleFavorite} className={`${liked ? "text-red-500" : "text-gray-500"} transition duration-300 focus:outline-none`}>
               {liked ? "❤️ Saved to favorites" : "🤍 Add to favorites"}
             </button>
           </div>
+          <h2 className="text-2xl text-gray-900 ">
+            <strong>Status:</strong> { data.success ? <span className="text-green-500" >Success</span> : <span className="text-red-600" >Failed</span> }
+          </h2>
           <p className="text-gray-700">
             <strong>Launch Date:</strong> {new Date(data.date_utc).toLocaleString()}
           </p>
           <p className="text-gray-700">
-            <strong>Launch Year:</strong> {data.launch_year || "No launch date"}
-          </p>
-          <p className="text-gray-700">
             <strong>Rocket:</strong> {data.rocket.rocket_name || "No rocket"}
           </p>
-          <div className="mb-4">
-            <strong>Watch the Launch:</strong>
-            <a href={data.links.video_link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Watch on YouTube</a>
-          </div>
           <div className="mb-4">
             <strong>More Info:</strong>
             <a href={data.links.wikipedia} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Read on Wikipedia</a>
@@ -77,6 +74,18 @@ export const LaunchDetails = () => {
         </div>
       </div>
   
+      <div className="h-80 w-full mt-8 bg-gray-200 flex justify-center items-center">
+        <iframe 
+          width="560" 
+          height="315" 
+          src={`https://www.youtube.com/embed/${data.links.youtube_id}`}
+          title="YouTube video player" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin" 
+          allowFullScreen>
+        </iframe>
+      </div>
+
       <div className="h-64 w-full mt-8 bg-gray-200 flex justify-center items-center">
         <iframe
           className="w-full h-full max-w-xl"
