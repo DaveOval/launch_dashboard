@@ -11,20 +11,20 @@ interface Launch {
 }
 
 export const LaunchList = () => {
+
   const { data, loading, error } = useFetch<Launch[]>("https://api.spacexdata.com/v4/launches");
   const [filters, setFilters] = useState({ search: "", year: "", result: "", rocket: "" });
 
-  // Si `data` es null, usa un array vacío temporalmente
   const filteredData = (data || []).filter((launch) => {
     const matchesSearch = launch.name.toLowerCase().includes(filters.search.toLowerCase());
     const matchesYear = filters.year ? launch.date_utc.startsWith(filters.year) : true;
-    const matchesResult = filters.result ? launch.success.toString() === filters.result : true;
+    const matchesResult = filters.result ? launch.success?.toString() === filters.result : true;
     const matchesRocket = filters.rocket ? launch.rocket === filters.rocket : true;
 
     return matchesSearch && matchesYear && matchesResult && matchesRocket;
   });
 
-  if (loading) {
+  if (loading) { 
     return <Loader />;
   }
 

@@ -72,8 +72,8 @@ export const Filters = ({ setFilters }: any) => {
             onChange={(e) => setResult(e.target.value)}
           >
             <option value="">Select result</option>
-            <option value="success">Successful</option>
-            <option value="failure">Failed</option>
+            <option value="true">Successful</option>
+            <option value="false">Failed</option>
           </select>
         </div>
 
