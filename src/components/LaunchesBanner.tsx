@@ -5,11 +5,12 @@ interface LaunchBannerProps  {
     description: string,
     img: string,
     link: string,
+    reverse: boolean
 }
 
-export const LaunchsBanner = ({title, description, img, link} : LaunchBannerProps) => {
+export const LaunchsBanner = ({title, description, img, link, reverse } : LaunchBannerProps) => {
   return (
-    <div className="flex flex-row w-full justify-around content-center bg-black mt-4 mb-4 p-7">
+    <div className={`flex w-full justify-around content-center bg-black mt-4 mb-4 p-7 ${reverse ? 'flex-row-reverse' : 'flex-row'}`}>
         <div className="content-center">
         <p className="text-5xl text-gray-900 dark:text-white">{title}</p>
         <p className="text-xl text-gray-900 dark:text-white">{ description }</p>

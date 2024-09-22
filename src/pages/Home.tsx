@@ -12,14 +12,15 @@ export const Home = () => {
         <h1 className="text-4xl font-thin text-gray-900 dark:text-black p-5" >SpaceX Dashboard </h1>
 
         {
-          banner_info.map( banner => {
+          banner_info.map( ( banner , index ) => {
             return (
               <LaunchsBanner 
                 title={banner.title}
                 img={banner.img}
                 description={banner.description}
                 link={banner.link}
-                key={1}
+                reverse={index % 2 === 1}
+                key={index}
               />
             )
           })
