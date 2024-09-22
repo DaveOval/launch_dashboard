@@ -1,14 +1,17 @@
 export const banner_info = [
     {
-        "title" : "Next launches",
-        "description": "See the next rockets",
-        "img" : "next_launch.jpg",
-        "link" : "launches/next"
+      title: "Upcoming Launches",
+      description: "Stay updated on the upcoming SpaceX rocket launches. Discover the next big missions!",
+      img: "next_launch.webp",
+      altText: "Upcoming SpaceX rocket launch",
+      link: "launches/next"
     },
     {
-        "title" : "Latests launches",
-        "description": "See the latest rockets",
-        "img" : "next_launch.jpg",
-        "link" : "launches/latest"
-    },
-]
+      title: "Latest Launches",
+      description: "Explore the latest SpaceX missions and their outcomes. See what just launched into space!",
+      img: "rocket_spacex.webp",
+      altText: "Latest SpaceX rocket launch",
+      link: "launches/latest"
+    }
+  ];
+  
