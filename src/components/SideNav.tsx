@@ -16,12 +16,12 @@ export const SideNav = () => {
       {/* Botón de menú para móvil */}
       <button 
         onClick={toggleMenu} 
-        className={`p-4 text-black md:hidden absolute transition-all z-50 duration-300 ${isOpen ? "left-64" : "left-4"}`}>
+        className={`p-2 text-black bg-slate-200 mt-3 rounded-lg md:hidden absolute transition-all z-[9999] duration-300 ${isOpen ? "left-64" : "left-3"}`}>
         {isOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
       </button>
 
       {/* Sidebar */}
-      <div className={`fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity md:relative md:translate-x-0 md:block ${isOpen ? 'block' : 'hidden'}`}>
+      <div className={`fixed z-[999] inset-0 bg-gray-900 bg-opacity-75 transition-opacity md:relative md:translate-x-0 md:block ${isOpen ? 'block' : 'hidden'}`}>
         <div className="w-64 bg-gray-900 text-white h-full">
           <div className="h-16 flex items-center justify-center text-xl font-bold bg-gray-800">
             SpaceX Dashboard

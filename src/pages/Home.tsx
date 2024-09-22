@@ -5,11 +5,9 @@ import { banner_info } from "../data/banner_info"
 export const Home = () => {
   return (
     <div className="flex flex-col bg-slate-950">
-      
       <div className="flex flex-col">
-
         <div 
-          className="relative w-full h-[700px] flex items-center justify-center bg-cover bg-center bg-no-repeat" 
+          className="relative w-auto h-[700px] flex items-center justify-center bg-cover bg-center bg-no-repeat" 
           style={{ backgroundImage: 'url(/space.webp)' }}
         >
           <div className="absolute inset-0 bg-black opacity-50"></div> 
