@@ -18,7 +18,6 @@ export const LaunchDetails = () => {
 
   const { data, loading, error } = useFetch<Launch>(`https://api.spacexdata.com/v4/launches/${launch_id}`);
 
-  // Asegúrate de que data está definido antes de pasarla al hook
   const [liked, toggleFavorite] = useFavorite(launch_id);
 
   if (loading) {
