@@ -7,7 +7,6 @@ interface FetchResult<T> {
     error: boolean;
 }
 
-
 export const useFetch =  <T,>(url : string ): FetchResult<T>=> {
 
     const [data, setData] = useState<T | null | any>(null);
