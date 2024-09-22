@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const Filters = ({ setFilters } : any ) => {
-  const [rockets, setRockets] = useState([]);
+// Define an interface for Rocket data
+interface Rocket {
+  id: string;
+  name: string;
+}
+
+export const Filters = ({ setFilters }: any) => {
+  // Define rockets with the correct type
+  const [rockets, setRockets] = useState<Rocket[]>([]);
   const [search, setSearch] = useState('');
   const [year, setYear] = useState('');
   const [result, setResult] = useState('');
@@ -21,7 +28,7 @@ export const Filters = ({ setFilters } : any ) => {
     fetchRockets();
   }, []);
 
-  const handleSubmit = ( e : any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     setFilters({ search, year, result, rocket });
   };
@@ -89,9 +96,9 @@ export const Filters = ({ setFilters } : any ) => {
         </div>
 
         {/* Submit button */}
-        <button type="submit" className="bg-blue-500 text-white  px-4 rounded-lg focus:ring-4 focus:ring-blue-300">
+        <button type="submit" className="bg-blue-500 text-white px-4 rounded-lg focus:ring-4 focus:ring-blue-300">
           Apply Filters
-          </button>
+        </button>
       </form>
     </nav>
   );

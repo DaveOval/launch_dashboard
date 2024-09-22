@@ -1,10 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+interface FetchResult<T> {
+    data: T;
+    loading: boolean;
+    error: boolean;
+}
 
-export const useFetch = (url : string ) => {
 
-    const [data, setData] = useState([]);
+export const useFetch =  <T,>(url : string ): FetchResult<T>=> {
+
+    const [data, setData] = useState<T | null | any>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState( false );
 
@@ -25,5 +31,5 @@ export const useFetch = (url : string ) => {
         fecthData();
     }, [ url ] );
 
-    return { data, loading, error };
+    return { data , loading, error };
 }
