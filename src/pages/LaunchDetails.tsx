@@ -73,28 +73,32 @@ export const LaunchDetails = () => {
           <img className="h-auto max-w-full rounded-md" src={`${data.links.patch.small}`} alt="image description" />
         </div>
       </div>
-  
-      <div className="h-80 w-full mt-8 bg-gray-200 flex justify-center items-center">
-        <iframe 
-          width="560" 
-          height="315" 
-          src={`https://www.youtube.com/embed/${data.links.youtube_id}`}
-          title="YouTube video player" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin" 
-          allowFullScreen>
-        </iframe>
+
+      <div className="flex flex-col w-full space-y-6 mt-5 p-5">
+        <div className="flex-1">
+          <iframe 
+            className="w-full h-64 md:h-96"  
+            src={`https://www.youtube.com/embed/${data.links.youtube_id}`}
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin" 
+            allowFullScreen>
+          </iframe>
+        </div>
+
+        <div className="flex-1">
+          <iframe
+            className="w-full h-64 md:h-96" 
+            frameBorder="0"
+            referrerPolicy="no-referrer-when-downgrade"
+            src={mapSrc}
+            allowFullScreen>
+          </iframe>
+        </div>
       </div>
 
-      <div className="h-64 w-full mt-8 bg-gray-200 flex justify-center items-center">
-        <iframe
-          className="w-full h-full max-w-xl"
-          frameBorder="0"
-          referrerPolicy="no-referrer-when-downgrade"
-          src={mapSrc}
-          allowFullScreen>
-        </iframe>
-      </div>
+  
+      
     </div>
   );
   
