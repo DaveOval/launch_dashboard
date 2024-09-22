@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { FaBars, FaListOl, FaTimes } from 'react-icons/fa';
+import { FaBars, FaListOl, FaMapMarkedAlt, FaTimes } from 'react-icons/fa';
 import { IoHomeSharp } from "react-icons/io5";
 import { MdFavorite, MdRocketLaunch } from "react-icons/md";
 import { PiRocketFill } from "react-icons/pi";
@@ -53,6 +53,12 @@ export const SideNav = () => {
                 <Link to="/latest_launches" className="flex items-center gap-4 w-full h-full">
                   <FaListOl className="h-5 w-5" />
                   <span>Latest Launches</span>
+                </Link>
+              </li>
+              <li className="px-4 py-2 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-700">
+                <Link to="/map" className="flex items-center gap-4 w-full h-full">
+                  <FaMapMarkedAlt className="h-5 w-5" />
+                  <span>Map</span>
                 </Link>
               </li>
 
