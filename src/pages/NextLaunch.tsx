@@ -122,7 +122,7 @@ export const NextLaunch = () => {
           <p className="mb-2">
             <strong>Wikipedia: </strong>
             <a
-              href={`${data.links.wikipedia}`}
+              href={`${data.links.wikipedia || "https://www.spacex.com/"}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 underline hover:text-blue-400 transition-colors"
