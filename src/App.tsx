@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Preload } from './components/Preload'; 
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
