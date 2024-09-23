@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useToast } from "../hooks";
 
 // Define an interface for Rocket data
 interface Rocket {
@@ -15,12 +16,15 @@ export const Filters = ({ setFilters }: any) => {
   const [result, setResult] = useState('');
   const [rocket, setRocket] = useState('');
 
+  const showToast = useToast();
+
   useEffect(() => {
     const fetchRockets = async () => {
       try {
         const response = await axios.get("https://api.spacexdata.com/v4/rockets");
         setRockets(response.data);
       } catch (error) {
+        showToast("Error fetching rockets data", "error")
         console.error("Error fetching rockets:", error);
       }
     };
@@ -28,9 +32,27 @@ export const Filters = ({ setFilters }: any) => {
     fetchRockets();
   }, []);
 
+  const validateForm = () => {
+    if (!search.trim()) {
+      showToast("Mission Name is required", "warning");
+      return false;
+    }
+    if (!year.trim() || isNaN(Number(year)) || Number(year) < 1950 || Number(year) > new Date().getFullYear()) {
+      showToast("Please enter a valid year", "warning");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
     setFilters({ search, year, result, rocket });
+    showToast("Filters applied successfully!", "success");
   };
 
   return (

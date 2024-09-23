@@ -3,6 +3,7 @@ import { Home, Error, LaunchDetails, LaunchList, Favorites, Map, LatestLaunch, N
 import { SideNav } from './components/SideNav';
 import { useEffect, useState } from 'react';
 import { Preload } from './components/Preload'; 
+import { Toaster } from 'sonner';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,6 +33,8 @@ function App() {
           </Routes>
         </div>
       )}
+
+      <Toaster expand={false} position="top-center" richColors />
     </div>
   );
 }
