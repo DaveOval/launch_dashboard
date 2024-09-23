@@ -2,22 +2,24 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToast } from "../hooks";
 
-// Define an interface for Rocket data
+// Interface Rocket 
 interface Rocket {
   id: string;
   name: string;
 }
 
 export const Filters = ({ setFilters }: any) => {
-  // Define rockets with the correct type
+  //State for filters
   const [rockets, setRockets] = useState<Rocket[]>([]);
   const [search, setSearch] = useState('');
   const [year, setYear] = useState('');
   const [result, setResult] = useState('');
   const [rocket, setRocket] = useState('');
 
+  //Inicialization of notification
   const showToast = useToast();
 
+  //Get the rocket types
   useEffect(() => {
     const fetchRockets = async () => {
       try {

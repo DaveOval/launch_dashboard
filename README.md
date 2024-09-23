@@ -25,7 +25,7 @@ Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 14 o supe
 1. Clona el repositorio en tu máquina local:
    ```bash
    git clone https://github.com/DaveOval/launch_dashboard
-   cd repo
+   cd launch_dashboard
    ```
 2. Instala las dependencias del proyecto:
     ```bash

@@ -8,6 +8,7 @@ import { PiRocketFill } from "react-icons/pi";
 export const SideNav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  //Funciton to toggle open o close
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
