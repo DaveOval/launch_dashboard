@@ -43,8 +43,8 @@ export const Map = () => {
   const launchpadCoordinates = launchpads.reduce((acc, launchpad) => {
     if (launchpad.coordinates) {
       acc[launchpad.id] = {
-        lat: launchpad.coordinates.latitude, 
-        lng: launchpad.coordinates.longitude 
+        lat: launchpad.latitude, 
+        lng: launchpad.longitude 
       };
     }
     return acc;
