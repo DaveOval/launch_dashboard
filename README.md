@@ -1,5 +1,6 @@
 # Dashboard de Lanzamientos de SpaceX
 
+
 ## Resumen del Proyecto
  **Dashboard de Lanzamientos de SpaceX**, utilizando React y Vite. Esta aplicación consume la [API de SpaceX](https://api.spacexdata.com/v4/launches) para mostrar información detallada sobre lanzamientos espaciales.
 
@@ -46,6 +47,27 @@ Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 14 o supe
 5. Abre tu navegador y visita http://localhost:3000 para ver la aplicación en funcionamiento.
 
 
+
+## Uso
+
+Una vez que la aplicación esté en ejecución, puedes explorar varias secciones utilizando la barra de navegación. Aquí están las funciones clave:
+
+### Navegacion
+
+1. **Inicio:** Resumen de la aplicación y las últimas noticias.
+2. **Lanzamientos:** Ver todos los lanzamientos pasados con información detallada.
+3. **Lanzamientos Próximos:** Ver lanzamientos que están programados para el futuro.
+4. **Últimos Lanzamientos:** Acceso rápido a los lanzamientos más recientes.
+5. **Mapa:** Mapa interactivo que muestra las ubicaciones de los lanzamientos en todo el mundo.
+6. **Favoritos:** Gestiona tus lanzamientos favoritos para un acceso rápido.
+
+## Filtros
+En la página de Lanzamientos, puedes filtrar los lanzamientos mostrados utilizando los siguientes criterios:
+
+1. **Buscar:** Escribe el nombre del lanzamiento para encontrar lanzamientos específicos.
+2. **Año:** Selecciona un año para ver los lanzamientos que ocurrieron en ese año.
+3. **Resultado:** Filtra los lanzamientos según su estado de éxito (exitoso o fallido).
+4. **Cohete:** Elige un cohete específico para ver sus lanzamientos.
 
 
 
