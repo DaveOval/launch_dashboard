@@ -11,6 +11,8 @@ interface Launchpad {
     name: string;
     coordinates: Location | null;
     location: Location; 
+    latitude: number; 
+    longitude: number;
 }
 
 interface UseLaunchPadsIds {
@@ -31,11 +33,13 @@ export const useLaunchPadsIds = (): UseLaunchPadsIds => {
             try {
                 const response = await axios.get<Launchpad[]>("https://api.spacexdata.com/v4/launchpads");
                 
-                const launchpadData = response.data.map(({ id, name, location }) => ({
+                const launchpadData = response.data.map(({ id, name, latitude, longitude }) => ({
                     id,
                     name,
-                    coordinates: location ? { latitude: location.latitude, longitude: location.longitude } : null,
-                    location: location ? { latitude: location.latitude, longitude: location.longitude } : { latitude: 0, longitude: 0 } 
+                    coordinates: { latitude, longitude },
+                    location: { latitude, longitude },
+                    latitude,
+                    longitude
                 }));
                 setLaunchPads(launchpadData);
             } catch (error) {
