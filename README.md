@@ -15,6 +15,8 @@
 - **Google Maps API**
 - **Tailwind CSS**
 - **localStorage** para gestión de favoritos
+- **React-Router** para gestión de rutas
+- **Vercel** PaaS
 
 ## Instrucciones para Levantar la Aplicación
 
