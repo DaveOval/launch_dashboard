@@ -11,7 +11,7 @@ export const banner_info = [
       description: "Explore the latest SpaceX missions and their outcomes. See what just launched into space!",
       img: "rocket_spacex.webp",
       altText: "Latest SpaceX rocket launch",
-      link: "latest_launches"
+      link: "latest_launch"
     }
   ];
   
