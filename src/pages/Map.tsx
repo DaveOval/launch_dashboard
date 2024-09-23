@@ -36,12 +36,15 @@ export const Map = () => {
     return <div>Error: {error}</div>;
   }
 
+  console.log({data})
+  console.log(launchpads)
+
   // Create an object for easy access to launchpad coordinates
   const launchpadCoordinates = launchpads.reduce((acc, launchpad) => {
     if (launchpad.coordinates) {
       acc[launchpad.id] = {
-        lat: launchpad.coordinates.latitude, // Ensure this matches your API structure
-        lng: launchpad.coordinates.longitude // Ensure this matches your API structure
+        lat: launchpad.coordinates.latitude, 
+        lng: launchpad.coordinates.longitude 
       };
     }
     return acc;
@@ -63,13 +66,13 @@ export const Map = () => {
             const coordinates = launchpadCoordinates[launch.launchpad];
 
             if (!coordinates) {
-              return null; // Skip markers without coordinates
+              return null; 
             }
 
             return (
               <Marker
                 key={launch.id}
-                position={coordinates} // This should now match the expected type
+                position={coordinates} 
                 onClick={() => setSelectedLaunch(launch)}
               />
             );
