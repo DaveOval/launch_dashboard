@@ -55,7 +55,7 @@ export const Map = () => {
   }
 
   return (
-    <div className='relative w-full h-[500px]'>
+    <div className='relative w-full h-90'>
       <GoogleMap
         mapContainerClassName="absolute inset-0"
         center={{ lat: 28.5721, lng: -80.648 }} // Default center of the map
