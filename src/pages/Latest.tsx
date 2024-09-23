@@ -1,6 +1,8 @@
 import { Loader } from "../components";
 import { useFetch } from "../hooks";
 
+
+//Launch interface
 interface Launch {
   name: string;
   date_utc: string;
@@ -32,13 +34,14 @@ interface Launch {
 }
 
 export const LatestLaunch = () => {
-  const { data, loading, error } = useFetch<Launch>(
-    `https://api.spacexdata.com/v4/launches/latest`
-  );
+  //Fetch data
+  const { data, loading, error } = useFetch<Launch>(`https://api.spacexdata.com/v4/launches/latest`);
 
+  //Show loader while fetching data
   if (loading) {
     return <Loader />
   }
+  //Eror component
   if (error) return <p className="text-center text-red-600">Error loading data</p>;
 
   return (

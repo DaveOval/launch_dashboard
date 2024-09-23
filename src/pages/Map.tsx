@@ -1,10 +1,13 @@
 import { useState } from 'react';
+
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
+import { Link } from 'react-router-dom';
+
 import { useFetch } from '../hooks';
 import { useLaunchPadsIds } from '../hooks/useLaunchPadIds';
 import { Loader } from '../components';
-import { Link } from 'react-router-dom';
 
+// Interface Launch
 interface Launch {
   id: string;
   name: string;
@@ -15,35 +18,44 @@ interface Launch {
   details: string;
   links?: {
     article?: string;
-    patch?: {
+    patch?: { //Image
       small: string
     };
   }
 }
 
+// Intercoordinates
 interface Coordinates {
-  lat: number;
-  lng: number;
+  lat: number; // Latitude
+  lng: number;  // Longitude
 }
 
 export const Map = () => {
+  //Fetch launchpad data 
   const { launchpads, loadingLaunchpads } = useLaunchPadsIds();
+  //Fetch launches data
   const { data, loading, error } = useFetch<Launch[]>("https://api.spacexdata.com/v4/launches");
+
+  //Load google Maps API
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
 
+  //Sore selected launches when a markers is clicked
   const [selectedLaunches, setSelectedLaunches] = useState<Launch[]>([]);
 
+  //Loader while fetching data
   if (loading || loadingLaunchpads) { 
     return <Loader />;
   }
 
+  // Handle fetch error
   if (error) {
     console.error("Fetch error:", error);
     return <div>Error: {error}</div>;
   }
 
+  // Maping launchpads to coordinates
   const launchpadCoordinates = launchpads.reduce((acc, launchpad) => {
     if (launchpad.coordinates) {
       acc[launchpad.id] = {
@@ -54,12 +66,15 @@ export const Map = () => {
     return acc;
   }, {} as Record<string, Coordinates>);
 
+  //Show loader until google maps API is loaded
   if (!isLoaded) {
     return <Loader />;
   }
 
+  //Group launches by ther coordinates
   const launchesByCoordinates: Record<string, Launch[]> = {};
 
+  //Bucle for group launches
   data?.forEach(launch => {
     const coordinates = launchpadCoordinates[launch.launchpad];
     if (coordinates) {

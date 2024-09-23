@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 
-export const Favorites: React.FC = () => {
+export const Favorites = () => {
+  //Inicialization of favorites
   const [favorites, setFavorites] = useState<string[]>([]); 
 
   useEffect(() => {
-    // Cargar los favoritos desde el local storage
+    // Load favorites from LocalStorage
     const storedFavorites: string[] = JSON.parse(localStorage.getItem('favorites') || '[]');
+    //Set favorites in the state
     setFavorites(storedFavorites);
   }, []);
 
+  //FUnction to detele from favorites and LocalStorage
   const handleDelete = (id: string) => { 
+    //Removing
     const updatedFavorites = favorites.filter(favorite => favorite !== id);
     setFavorites(updatedFavorites);
+    //updating LocalStorage
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites)); 
   };
 
@@ -56,6 +62,7 @@ export const Favorites: React.FC = () => {
                 </tr>
               ))
             ) : (
+              /* If LocalStorage its empy  */
               <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td colSpan={3} className="px-6 py-4 text-center text-gray-500">
                   No favorites found

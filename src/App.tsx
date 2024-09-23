@@ -1,13 +1,16 @@
+import { useEffect, useState } from 'react';
+
 import { Routes, Route } from 'react-router-dom';
+import { Toaster } from 'sonner';
+
 import { Home, Error, LaunchDetails, LaunchList, Favorites, Map, LatestLaunch, NextLaunch } from './pages';
 import { SideNav } from './components/SideNav';
-import { useEffect, useState } from 'react';
 import { Preload } from './components/Preload'; 
-import { Toaster } from 'sonner';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
+  /* Simulated loader for the initial load */
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -29,11 +32,12 @@ function App() {
             <Route path="/launch/:id" element={<LaunchDetails />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/map" element={<Map />} />
+            {/* Error Page */}
             <Route path="*" element={<Error />} />
           </Routes>
         </div>
       )}
-
+      {/* Component for rendering notifications */}
       <Toaster expand={false} position="bottom-center" richColors />
     </div>
   );

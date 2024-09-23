@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { toast } from 'sonner';
 
-
+//Component to render a notification
 export const useToast = () => {
     const makeAToast = useCallback(( message : string, type = "success") => {
         switch (type) {

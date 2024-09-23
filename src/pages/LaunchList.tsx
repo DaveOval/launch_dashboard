@@ -1,7 +1,9 @@
 import { useState } from "react";
+
 import { Filters, LaunchCard, Loader } from "../components";
 import { useFetch } from "../hooks";
 
+//Interface of a launch objetc
 interface Launch {
   id: string;
   name: string;
@@ -11,10 +13,12 @@ interface Launch {
 }
 
 export const LaunchList = () => {
-
+  //Fetch launches
   const { data, loading, error } = useFetch<Launch[]>("https://api.spacexdata.com/v4/launches");
+  //Sate to filters
   const [filters, setFilters] = useState({ search: "", year: "", result: "", rocket: "" });
 
+  //Definition of filters
   const filteredData = (data || []).filter((launch) => {
     const matchesSearch = launch.name.toLowerCase().includes(filters.search.toLowerCase());
     const matchesYear = filters.year ? launch.date_utc.startsWith(filters.year) : true;
@@ -24,10 +28,12 @@ export const LaunchList = () => {
     return matchesSearch && matchesYear && matchesResult && matchesRocket;
   });
 
+  // Show loader while fetching data
   if (loading) { 
     return <Loader />;
   }
 
+  // Handle fetch error
   if (error) {
     return <div>Error</div>;
   }

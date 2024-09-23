@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 
+/* Error page */
 export const Error = () => {
   return (
     <div className="flex flex-col bg-slate-950 h-screen">

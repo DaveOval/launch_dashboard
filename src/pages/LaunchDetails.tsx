@@ -1,8 +1,10 @@
 import { useLocation } from "react-router-dom";
+
 import { useFetch } from "../hooks";
 import { Loader } from "../components";
 import useFavorite from "../hooks/useFavorites";
 
+//Interface for launch
 interface Launch {
   flight_number: number;
   name: string;
@@ -29,14 +31,17 @@ interface Launch {
 }
 
 export const LaunchDetails = () => {
+  // Geting launche id for the URL
   const launch_id = useLocation().pathname.split("/")[2];
+  // fetch launcha data
   const { data, loading, error } = useFetch<Launch>(`https://api.spacexdata.com/v4/launches/${launch_id}`);
   const [liked, toggleFavorite] = useFavorite(launch_id);
 
+  // Show loader 
   if (loading) {
     return <Loader />;
   }
-
+  // Show error if someting go wrong
   if (error) {
     return <div>Error: {error}</div>;
   }

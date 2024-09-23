@@ -1,6 +1,7 @@
 import { Loader } from "../components";
 import { useFetch } from "../hooks";
 
+/* Interface for launch */
 interface Launch {
   name: string;
   date_utc: string;
@@ -34,9 +35,11 @@ interface Launch {
 export const NextLaunch = () => {
   const { data, loading, error } = useFetch<Launch>(`https://api.spacexdata.com/v4/launches/next`);
 
+  /* Preload for the page */
   if (loading) {
     return <Loader />
   }
+  /* Error component */
   if (error) return <p className="text-center text-red-600">Error loading data</p>;
 
   return (

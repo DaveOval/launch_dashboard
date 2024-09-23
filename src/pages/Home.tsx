@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+
 import { LaunchsBanner } from "../components"
 import { banner_info } from "../data/banner_info"
 
@@ -21,7 +22,7 @@ export const Home = () => {
             </Link>
           </div>
         </div>
-
+        {/* Rendering data for banner_info */}
         {
           banner_info.map( ( banner , index ) => {
             return (
