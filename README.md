@@ -1,50 +1,50 @@
-# React + TypeScript + Vite
+# Dashboard de Lanzamientos de SpaceX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Resumen del Proyecto
+ **Dashboard de Lanzamientos de SpaceX**, utilizando React y Vite. Esta aplicación consume la [API de SpaceX](https://api.spacexdata.com/v4/launches) para mostrar información detallada sobre lanzamientos espaciales.
 
-Currently, two official plugins are available:
+### Funcionalidades Clave:
+- **Integración con la API**: Recupera y muestra información sobre lanzamientos, incluyendo nombre, fecha, resultado y ubicación.
+- **Filtros Avanzados**: Permite filtrar lanzamientos por año, resultado, tipo de cohete y búsqueda por nombre de misión.
+- **Visualización en Google Maps**: Muestra la ubicación de los lanzamientos en un mapa interactivo.
+- **Manejo de Favoritos**: Permite a los usuarios marcar lanzamientos como favoritos, almacenándolos en localStorage.
+- **Interfaz Responsiva**: Diseño visualmente atractivo y optimizado para dispositivos móviles y de escritorio.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Tecnologías Utilizadas:
+- **React** (con TypeScript)
+- **Google Maps API**
+- **Tailwind CSS**
+- **localStorage** para gestión de favoritos
 
-## Expanding the ESLint configuration
+## Instrucciones para Levantar la Aplicación
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerrequisitos
+Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 14 o superior) y [npm](https://www.npmjs.com/get-npm).
 
-- Configure the top-level `parserOptions` property like this:
+### Ejecutar la aplicación
+1. Clona el repositorio en tu máquina local:
+   ```bash
+   git clone https://github.com/usuario/repo.git
+   cd repo
+   ```
+2. Instala las dependencias del proyecto:
+    ```bash
+        npm install
+    ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+3. Crea un archivo .env en la raíz del proyecto y añade tu clave de API de Google Maps:
+    ```plaintext
+        REACT_APP_GOOGLE_MAPS_API_KEY=tu_clave_de_api
+    ```
+4. Inicia la aplicación en modo de desarrollo:
+    ```bash
+        npm run dev
+    ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+5. Abre tu navegador y visita http://localhost:3000 para ver la aplicación en funcionamiento.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+
+
+
