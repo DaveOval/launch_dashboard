@@ -41,10 +41,6 @@ export const LaunchDetails = () => {
     return <div>Error: {error}</div>;
   }
 
-  console.log({data})
-
-  /* const siteName = data.launch_site?.site_name || "Lugar no encontrado";
-  const mapSrc = `https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(siteName)}`; */
 
   return (
     <div className="p-6 md:p-8 bg-gray-100 min-h-screen flex flex-col">
@@ -95,19 +91,8 @@ export const LaunchDetails = () => {
           </iframe>
         </div>
 
-        {/* <div className="flex-1">
-          <iframe
-            className="w-full h-64 md:h-96" 
-            frameBorder="0"
-            referrerPolicy="no-referrer-when-downgrade"
-            src={mapSrc}
-            allowFullScreen>
-          </iframe>
-        </div> */}
       </div>
 
-  
-      
     </div>
   );
   
