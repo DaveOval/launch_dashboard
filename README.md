@@ -24,7 +24,7 @@ Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 14 o supe
 ### Ejecutar la aplicación
 1. Clona el repositorio en tu máquina local:
    ```bash
-   git clone https://github.com/usuario/repo.git
+   git clone https://github.com/DaveOval/launch_dashboard
    cd repo
    ```
 2. Instala las dependencias del proyecto:
@@ -32,9 +32,9 @@ Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 14 o supe
         npm install
     ```
 
-3. Crea un archivo .env en la raíz del proyecto y añade tu clave de API de Google Maps:
+3. Crea un archivo .env en la raíz del proyecto y añade tu clave de API de Google Maps (Tienes una plantilla en .env.template solo renombrelo quitando el .template):
     ```plaintext
-        REACT_APP_GOOGLE_MAPS_API_KEY=tu_clave_de_api
+        VITE_GOOGLE_MAPS_API_KEY="YOUR_API_KEY"
     ```
 4. Inicia la aplicación en modo de desarrollo:
     ```bash
