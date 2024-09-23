@@ -3,6 +3,7 @@ import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-map
 import { useFetch } from '../hooks';
 import { useLaunchPadsIds } from '../hooks/useLaunchPadIds';
 import { Loader } from '../components';
+import { Link } from 'react-router-dom';
 
 interface Launch {
   id: string;
@@ -11,6 +12,11 @@ interface Launch {
   success: boolean;
   rocket: string;
   launchpad: string;
+  details: string;
+  links?: {
+    article?: string;
+    patch?: string;
+  }
 }
 
 interface Coordinates {
@@ -88,8 +94,19 @@ export const Map = () => {
               <h4 className="text-lg font-bold">{selectedLaunch.name}</h4>
               <p className="text-sm">Fecha: {new Date(selectedLaunch.date_utc).toLocaleDateString()}</p>
               <p className={`text-sm font-semibold ${selectedLaunch.success ? 'text-green-500' : 'text-red-500'}`}>
-                {selectedLaunch.success ? 'Éxito' : 'Fallo'}
+                {selectedLaunch.success ? 'Success' : 'Failed'}
               </p>
+              {selectedLaunch.links?.patch && (
+                <img src={selectedLaunch.links.patch} alt={`${selectedLaunch.name} patch`} className="my-2 w-32" />
+              )}
+              {selectedLaunch.links?.article && (
+                <a href={selectedLaunch.links.article} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
+                  Leer artículo
+                </a>
+              )}
+              <Link to={`/launch/${selectedLaunch.id}`}>
+                See more
+              </Link>
             </div>
           </InfoWindow>
         )}
