@@ -31,7 +31,7 @@ export const Map = () => {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
 
-  const [selectedLaunch, setSelectedLaunch] = useState<Launch | null>(null);
+  const [selectedLaunches, setSelectedLaunches] = useState<Launch[]>([]);
 
   if (loading || loadingLaunchpads) { 
     return <Loader />;
@@ -42,14 +42,10 @@ export const Map = () => {
     return <div>Error: {error}</div>;
   }
 
-  console.log({data})
-  console.log(launchpads)
-
-  // Create an object for easy access to launchpad coordinates
   const launchpadCoordinates = launchpads.reduce((acc, launchpad) => {
     if (launchpad.coordinates) {
       acc[launchpad.id] = {
-        lat: launchpad.latitude, 
+        lat: launchpad.latitude,
         lng: launchpad.longitude 
       };
     }
@@ -60,6 +56,19 @@ export const Map = () => {
     return <Loader />;
   }
 
+  const launchesByCoordinates: Record<string, Launch[]> = {};
+
+  data?.forEach(launch => {
+    const coordinates = launchpadCoordinates[launch.launchpad];
+    if (coordinates) {
+      const coordKey = `${coordinates.lat},${coordinates.lng}`;
+      if (!launchesByCoordinates[coordKey]) {
+        launchesByCoordinates[coordKey] = [];
+      }
+      launchesByCoordinates[coordKey].push(launch);
+    }
+  });
+
   return (
     <div className='relative w-full h-full'>
       <GoogleMap
@@ -68,45 +77,43 @@ export const Map = () => {
         zoom={5}
       >
         {
-          data?.map((launch) => {
-            const coordinates = launchpadCoordinates[launch.launchpad];
-
-            if (!coordinates) {
-              return null; 
-            }
+          Object.entries(launchesByCoordinates).map(([coordKey, launches]) => {
+            const [lat, lng] = coordKey.split(',').map(Number);
 
             return (
               <Marker
-                key={launch.id}
-                position={coordinates} 
-                onClick={() => setSelectedLaunch(launch)}
+                key={coordKey}
+                position={{ lat, lng }} 
+                onClick={() => setSelectedLaunches(launches)}
               />
             );
           })
         }
 
-        {selectedLaunch && (
+        {selectedLaunches.length > 0 && (
           <InfoWindow 
-            position={launchpadCoordinates[selectedLaunch.launchpad]} 
-            onCloseClick={() => setSelectedLaunch(null)}
+            position={launchpadCoordinates[selectedLaunches[0].launchpad]} // Obtiene las coordenadas del launchpad
+            onCloseClick={() => setSelectedLaunches([])}
           >
             <div className="p-2 bg-white rounded-lg shadow-lg">
-              <h4 className="text-lg font-bold">{selectedLaunch.name}</h4>
-              <p className="text-sm">Fecha: {new Date(selectedLaunch.date_utc).toLocaleDateString()}</p>
-              <p className={`text-sm font-semibold ${selectedLaunch.success ? 'text-green-500' : 'text-red-500'}`}>
-                {selectedLaunch.success ? 'Success' : 'Failed'}
-              </p>
-              {selectedLaunch.links?.patch && (
-                <img src={selectedLaunch.links.patch} alt={`${selectedLaunch.name} patch`} className="my-2 w-32" />
-              )}
-              {selectedLaunch.links?.article && (
-                <a href={selectedLaunch.links.article} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-                  Leer artículo
-                </a>
-              )}
-              <Link to={`/launch/${selectedLaunch.id}`}>
-                See more
-              </Link>
+              <h4 className="text-lg font-bold">Lanzamientos</h4>
+              {selectedLaunches.map(launch => (
+                <div key={launch.id}>
+                  <h5 className="font-semibold">{launch.name}</h5>
+                  <p>{new Date(launch.date_utc).toLocaleDateString()}</p>
+                  {launch.links?.patch && (
+                    <img src={launch.links.patch} alt={`${launch.name} patch`} className="my-2 w-32" />
+                  )}
+                  {launch.links?.article && (
+                    <a href={launch.links.article} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
+                      Leer artículo
+                    </a>
+                  )}
+                  <Link to={`/launch/${launch.id}`}>
+                    See more
+                  </Link>
+                </div>
+              ))}
             </div>
           </InfoWindow>
         )}
