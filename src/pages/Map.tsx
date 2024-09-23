@@ -15,7 +15,9 @@ interface Launch {
   details: string;
   links?: {
     article?: string;
-    patch?: string;
+    patch?: {
+      small: string
+    };
   }
 }
 
@@ -102,7 +104,7 @@ export const Map = () => {
                   <h5 className="font-semibold">{launch.name}</h5>
                   <p>{new Date(launch.date_utc).toLocaleDateString()}</p>
                   {launch.links?.patch && (
-                    <img src={launch.links.patch} alt={`${launch.name} patch`} className="my-2 w-32" />
+                    <img src={launch.links.patch.small} alt={`${launch.name} patch`} className="my-2 w-32" />
                   )}
                   {launch.links?.article && (
                     <a href={launch.links.article} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
