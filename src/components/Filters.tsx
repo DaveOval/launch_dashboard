@@ -33,15 +33,29 @@ export const Filters = ({ setFilters }: any) => {
   }, []);
 
   const validateForm = () => {
-    if (!search.trim()) {
-      showToast("Mission Name is required", "warning");
-      return false;
-    }
-    if (!year.trim() || isNaN(Number(year)) || Number(year) < 1950 || Number(year) > new Date().getFullYear()) {
+    // Validate year only if it is provided
+    if (year.trim() && (isNaN(Number(year)) || Number(year) < 1950 || Number(year) > new Date().getFullYear())) {
       showToast("Please enter a valid year", "warning");
       return false;
     }
+
+    // Optionally validate result and rocket if provided
+    if (result && !['true', 'false'].includes(result)) {
+      showToast("Please select a valid result", "warning");
+      return false;
+    }
+
+    if (rocket && !rockets.some(r => r.id === rocket)) {
+      showToast("Please select a valid rocket", "warning");
+      return false;
+    }
+
     return true;
+  };
+
+  // Simple sanitization: remove quotes
+  const sanitizeInput = (input: string) => {
+    return input.replace(/['"]/g, ""); 
   };
 
   const handleSubmit = (e: any) => {
@@ -51,7 +65,13 @@ export const Filters = ({ setFilters }: any) => {
       return;
     }
 
-    setFilters({ search, year, result, rocket });
+    // Sanitize inputs before setting filters
+    const sanitizedSearch = sanitizeInput(search);
+    const sanitizedYear = sanitizeInput(year);
+    const sanitizedResult = sanitizeInput(result);
+    const sanitizedRocket = sanitizeInput(rocket);
+
+    setFilters({ search: sanitizedSearch, year: sanitizedYear, result: sanitizedResult, rocket: sanitizedRocket });
     showToast("Filters applied successfully!", "success");
   };
 

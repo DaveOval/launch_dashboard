@@ -34,7 +34,7 @@ function App() {
         </div>
       )}
 
-      <Toaster expand={false} position="top-center" richColors />
+      <Toaster expand={false} position="bottom-center" richColors />
     </div>
   );
 }
