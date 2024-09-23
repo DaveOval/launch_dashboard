@@ -83,7 +83,7 @@ export const LaunchDetails = () => {
         </div>
       </div>
 
-      <div className="flex flex-col w-full space-y-6 mt-5 p-5">
+      <div className="flex flex-col w-full space-y-6 mt-5 p-5 h-auto">
         <div className="flex-1">
           <iframe 
             className="w-full h-64 md:h-96"  
