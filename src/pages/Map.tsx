@@ -100,19 +100,19 @@ export const Map = () => {
             <div className="p-2 bg-white rounded-lg shadow-lg">
               <h4 className="text-lg font-bold">Lanzamientos</h4>
               {selectedLaunches.map(launch => (
-                <div key={launch.id}>
-                  <h5 className="font-semibold">{launch.name}</h5>
-                  <p>{new Date(launch.date_utc).toLocaleDateString()}</p>
+                <div key={launch.id} className="mt-2">
+                  <h5 className="font-semibold text-lg">{launch.name}</h5>
+                  <p className="text-sm text-gray-600">{new Date(launch.date_utc).toLocaleDateString()}</p>
                   {launch.links?.patch && (
-                    <img src={launch.links.patch.small} alt={`${launch.name} patch`} className="my-2 w-32" />
+                    <img src={launch.links.patch.small} alt={`${launch.name} patch`} className="my-2 w-32 h-auto" />
                   )}
                   {launch.links?.article && (
-                    <a href={launch.links.article} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
+                    <a href={launch.links.article} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                       Leer artículo
                     </a>
                   )}
-                  <Link to={`/launch/${launch.id}`}>
-                    See more
+                  <Link to={`/launch/${launch.id}`} className="block mt-1 text-blue-600 hover:underline">
+                    Ver más
                   </Link>
                 </div>
               ))}
