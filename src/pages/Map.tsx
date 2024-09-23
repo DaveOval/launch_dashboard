@@ -13,6 +13,11 @@ interface Launch {
   launchpad: string; // Make sure this property exists
 }
 
+interface Coordinates {
+  lat: number;
+  lng: number;
+}
+
 export const Map = () => {
   const { launchpads, loadingLaunchpads } = useLaunchPadsIds();
   const { data, loading, error } = useFetch<Launch[]>("https://api.spacexdata.com/v4/launches");
@@ -28,16 +33,19 @@ export const Map = () => {
 
   if (error) {
     console.error("Fetch error:", error);
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error}</div>;
   }
 
   // Create an object for easy access to launchpad coordinates
   const launchpadCoordinates = launchpads.reduce((acc, launchpad) => {
     if (launchpad.coordinates) {
-      acc[launchpad.id] = launchpad.coordinates;
+      acc[launchpad.id] = {
+        lat: launchpad.coordinates.latitude, // Ensure this matches your API structure
+        lng: launchpad.coordinates.longitude // Ensure this matches your API structure
+      };
     }
     return acc;
-  }, {} as Record<string, { latitude: number; longitude: number }>);
+  }, {} as Record<string, Coordinates>);
 
   if (!isLoaded) {
     return <Loader />;
@@ -61,7 +69,7 @@ export const Map = () => {
             return (
               <Marker
                 key={launch.id}
-                position={coordinates}
+                position={coordinates} // This should now match the expected type
                 onClick={() => setSelectedLaunch(launch)}
               />
             );
@@ -70,7 +78,7 @@ export const Map = () => {
 
         {selectedLaunch && (
           <InfoWindow 
-            position={launchpadCoordinates[selectedLaunch.launchpad]}
+            position={launchpadCoordinates[selectedLaunch.launchpad]} // Now using the correct type
             onCloseClick={() => setSelectedLaunch(null)}
           >
             <div className="p-2 bg-white rounded-lg shadow-lg">
