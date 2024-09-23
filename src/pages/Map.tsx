@@ -10,7 +10,7 @@ interface Launch {
   date_utc: string;
   success: boolean;
   rocket: string;
-  launchpad: string; // Make sure this property exists
+  launchpad: string;
 }
 
 interface Coordinates {
@@ -55,10 +55,10 @@ export const Map = () => {
   }
 
   return (
-    <div className='relative w-full h-[500px]'>
+    <div className='relative w-full h-full'>
       <GoogleMap
-        mapContainerClassName="absolute inset-0"
-        center={{ lat: 28.5721, lng: -80.648 }} // Default center of the map
+        mapContainerClassName="absolute inset-0 w-full h-full"
+        center={{ lat: 28.5721, lng: -80.648 }} 
         zoom={5}
       >
         {
@@ -81,7 +81,7 @@ export const Map = () => {
 
         {selectedLaunch && (
           <InfoWindow 
-            position={launchpadCoordinates[selectedLaunch.launchpad]} // Now using the correct type
+            position={launchpadCoordinates[selectedLaunch.launchpad]} 
             onCloseClick={() => setSelectedLaunch(null)}
           >
             <div className="p-2 bg-white rounded-lg shadow-lg">
