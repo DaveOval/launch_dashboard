@@ -54,7 +54,7 @@ Una vez que la aplicación esté en ejecución, puedes explorar varias secciones
 
 ### Navegacion
 
-1. **Inicio:** Resumen de la aplicación y las últimas noticias.
+1. **Inicio:** Resumen de lanzamientos.
 2. **Lanzamientos:** Ver todos los lanzamientos pasados con información detallada.
 3. **Lanzamientos Próximos:** Ver lanzamientos que están programados para el futuro.
 4. **Últimos Lanzamientos:** Acceso rápido a los lanzamientos más recientes.
