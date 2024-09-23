@@ -31,10 +31,8 @@ interface Launch {
   };
 }
 
-export const LatestLaunch = () => {
-  const { data, loading, error } = useFetch<Launch>(
-    `https://api.spacexdata.com/v4/launches/latest`
-  );
+export const NextLaunch = () => {
+  const { data, loading, error } = useFetch<Launch>(`https://api.spacexdata.com/v4/launches/next`);
 
   if (loading) {
     return <Loader />

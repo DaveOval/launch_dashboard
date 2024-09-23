@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { Home, Error, LaunchDetails, LaunchList, Favorites, Map, LatestLaunch } from './pages';
+import { Home, Error, LaunchDetails, LaunchList, Favorites, Map, LatestLaunch, NextLaunch } from './pages';
 import { SideNav } from './components/SideNav';
 import { useEffect, useState } from 'react';
 import { Preload } from './components/Preload'; 
@@ -23,7 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/launches" element={<LaunchList />} />
-            <Route path="/upcomming_launches" element={<LaunchList />} />
+            <Route path="/upcomming_launches" element={<NextLaunch />} />
             <Route path="/latest_launch" element={<LatestLaunch />} />
             <Route path="/launch/:id" element={<LaunchDetails />} />
             <Route path="/favorites" element={<Favorites />} />
